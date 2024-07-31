@@ -1,0 +1,88 @@
+const generateBtn = document.getElementById('generateBtn');
+
+generateBtn.addEventListener('click', generateCV);
+
+function generateCV() {
+    const name = document.getElementById('name').value;
+    const contact = document.getElementById('contact').value;
+    const address = document.getElementById('address').value;
+    const gmail = document.getElementById('gmail').value;
+    const instagram = document.getElementById('instagram').value;
+    const linkedin = document.getElementById('linkedin').value;
+    const objective = document.getElementById('objective').value;
+    const experience = document.getElementById('experience').value;
+    const education = document.getElementById('education').value;
+
+    const cvContent = `
+        <div class="cv">
+            <div class="header">
+                <h1>${name}</h1>
+                <p>${contact} | ${address}</p>
+                <p>Email: ${gmail}</p>
+                <div class="links">
+                    <a href="${instagram}" target="_blank">Instagram</a>
+                    <a href="${linkedin}" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+            <div class="section">
+                <h2>Objective</h2>
+                <p>${objective}</p>
+            </div>
+            <div class="section">
+                <h2>Work Experience</h2>
+                <p>${experience}</p>
+            </div>
+            <div class="section">
+                <h2>Academic Qualifications</h2>
+                <p>${education}</p>
+            </div>
+        </div>
+    `;
+
+    const cvWindow = window.open('', '', 'width=600,height=800');
+    cvWindow.document.open();
+    cvWindow.document.write(`
+        <html>
+        <head>
+            <title>Generated CV</title>
+            <style>
+                body {
+                    font-family: 'Times New Roman', Times, serif;
+                    background-color: #f5f5f5;
+                    margin: 0;
+                    padding: 20px;
+                }
+
+                .cv {
+                    background-color: #fff;
+                    padding: 20px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+
+                .header h1 {
+                    margin: 0;
+                }
+
+                .header p {
+                    margin: 5px 0;
+                }
+
+                .links a {
+                    margin-right: 10px;
+                    text-decoration: none;
+                    color: #333;
+                }
+
+                .section h2 {
+                    margin-top: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            ${cvContent}
+        </body>
+        </html>
+    `);
+    cvWindow.document.close();
+}
